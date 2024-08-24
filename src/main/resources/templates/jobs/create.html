@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Post a Job</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Post a Job</h1>
+    <form th:action="@{/jobs/create}" method="post" th:object="${job}">
+        <label for="title">Job Title:</label>
+        <input type="text" id="title" th:field="*{title}" required>
+        <label for="description">Job Description:</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+        <label for="company">Company Name:</label>
+        <input type="text" id="company" th:field="*{company}" required>
+        <label for="location">Location:</label>
+        <input type="text" id="location" th:field="*{location}" required>
+        <button type="submit">Post Job</button>
+    </form>
+</body>
+</html>
