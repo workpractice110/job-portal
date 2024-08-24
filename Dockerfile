@@ -1,16 +1,14 @@
-#FROM ubuntu:latest AS build
+# Use an official JDK runtime as a parent image
 FROM openjdk:17-jdk-alpine
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+# Set the working directory in the container
+WORKDIR /app
 
-RUN ./mvnw package
+# Copy the project’s jar file to the container
+COPY target/jobportal-0.0.1-SNAPSHOT.jar /app/jobportal-0.0.1-SNAPSHOT.jar
 
-FROM openjdk:17-jdk-slim
+# Make port 8080 available to the world outside this container
+EXPOSE 9090
 
-EXPOSE 8080
-
-COPY --from=target /target/jobportal-0.0.1-SNAPSHOT.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the jar file
+ENTRYPOINT ["java", "-jar", "/app/jobportal-0.0.1-SNAPSHOT.jar"]
