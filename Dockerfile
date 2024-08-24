@@ -1,4 +1,5 @@
-FROM ubuntu:latest AS build
+#FROM ubuntu:latest AS build
+FROM openjdk:17-jdk-alpine
 
 RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
